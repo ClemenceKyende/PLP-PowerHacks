@@ -142,7 +142,15 @@ function showError(message) {
         errorContainer.textContent = message;
         errorContainer.style.display = 'block';
     } else {
-        console.error(message);
+        const messagesDiv = document.getElementById('messages');
+        if (messagesDiv) {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.textContent = message;
+            messagesDiv.appendChild(errorDiv);
+        } else {
+            console.error(message);
+        }
     }
 }
 
@@ -195,54 +203,31 @@ async function loadQuizzes() {
         showError('An error occurred while fetching quizzes.');
     }
 }
+// Function to add messages to the chat box
+function addMessage(sender, message) {
+    const chatBox = document.getElementById('chat-box');
+    const messageElement = document.createElement('div');
+    messageElement.className = 'message';
+    messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
+    chatBox.appendChild(messageElement);
+}
 
 // Function to handle sending a message
-async function sendMessage() {
-    const userInput = document.getElementById('userInput').value;
-    const messagesDiv = document.getElementById('messages');
-
-    if (!userInput.trim()) {
-        return; // Do nothing if the input is empty
-    }
-
-    // Display the user's message
-    const userMessageDiv = document.createElement('div');
-    userMessageDiv.className = 'message user-message';
-    userMessageDiv.textContent = `You: ${userInput}`;
-    messagesDiv.appendChild(userMessageDiv);
-
-    // Clear the input field
-    document.getElementById('userInput').value = '';
-
-    // Send the message to the server
+async function sendMessageToServer(message) {
     try {
         const response = await fetch('/api/chat', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ message: userInput })
+            body: JSON.stringify({ message })
         });
 
-        const data = await response.json();
-
-        if (response.ok) {
-            // Display the chatbot's response
-            const botMessageDiv = document.createElement('div');
-            botMessageDiv.className = 'message bot-message';
-            botMessageDiv.textContent = `Bot: ${data.reply}`;
-            messagesDiv.appendChild(botMessageDiv);
-        } else {
-            // Handle errors
-            showError('Failed to get a response from the bot.');
+        if (!response.ok) {
+            throw new Error('Failed to get a response from the bot.');
         }
+
+        const data = await response.json();
+        addMessage('Bot', data.reply);
     } catch (error) {
         showError('An error occurred while sending the message.');
     }
-}
-
-// Function to display error messages
-function showError(message) {
-    const errorContainer = document.createElement('div');
-    errorContainer.className = 'error-message';
-    errorContainer.textContent = message;
-    document.getElementById('messages').appendChild(errorContainer);
 }
