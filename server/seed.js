@@ -14,19 +14,19 @@ const sampleCourses = [
             {
                 title: "HTML Basics",
                 content: "Introduction to HTML, structure, and elements.",
-                resources: ["http://example.com/html-basics"],
+                resources: ["https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML"],
                 completed: false
             },
             {
                 title: "CSS Basics",
                 content: "Understanding CSS and styling web pages.",
-                resources: ["http://example.com/css-basics"],
+                resources: ["https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps"],
                 completed: false
             },
             {
                 title: "JavaScript Basics",
                 content: "Introduction to JavaScript programming.",
-                resources: ["http://example.com/javascript-basics"],
+                resources: ["https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps"],
                 completed: false
             }
         ]
@@ -38,19 +38,19 @@ const sampleCourses = [
             {
                 title: "Closures",
                 content: "Understanding closures in JavaScript.",
-                resources: ["http://example.com/closures"],
+                resources: ["https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures"],
                 completed: false
             },
             {
                 title: "Promises",
                 content: "Learning about Promises and their usage.",
-                resources: ["http://example.com/promises"],
+                resources: ["https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises"],
                 completed: false
             },
             {
                 title: "Async/Await",
                 content: "Using async/await for asynchronous operations.",
-                resources: ["http://example.com/async-await"],
+                resources: ["https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Async_await"],
                 completed: false
             }
         ]
@@ -62,19 +62,19 @@ const sampleCourses = [
             {
                 title: "SQL Databases",
                 content: "Introduction to SQL databases and their management.",
-                resources: ["http://example.com/sql-databases"],
+                resources: ["https://www.w3schools.com/sql/"],
                 completed: false
             },
             {
                 title: "NoSQL Databases",
                 content: "Understanding NoSQL databases and their use cases.",
-                resources: ["http://example.com/nosql-databases"],
+                resources: ["https://www.mongodb.com/nosql-explained"],
                 completed: false
             },
             {
                 title: "Database Design",
                 content: "Best practices for designing databases.",
-                resources: ["http://example.com/database-design"],
+                resources: ["https://www.geeksforgeeks.org/database-design/"],
                 completed: false
             }
         ]
@@ -84,35 +84,63 @@ const sampleCourses = [
 const sampleQuizzes = [
     {
         title: 'HTML Basics Quiz',
-        description: 'Test your knowledge of HTML basics', // Added description
+        description: 'Test your knowledge of HTML basics with these questions.',
         courseId: '', // This will be set after inserting courses
         questions: [
             {
                 question: "What does HTML stand for?",
                 options: ["Hyper Text Markup Language", "Hyperlinks and Text Markup Language", "Home Tool Markup Language"],
-                answer: "Hyper Text Markup Language"
+                answer: "Hyper Text Markup Language",
+                explanation: "HTML stands for Hyper Text Markup Language, which is used to structure content on the web."
             },
             {
                 question: "Which HTML element is used to specify a header for a document?",
                 options: ["<head>", "<header>", "<h1>"],
-                answer: "<header>"
+                answer: "<header>",
+                explanation: "The <header> element defines a header for a document or section, providing a more semantic structure."
+            },
+            {
+                question: "True or False: The <p> tag is used to define paragraphs.",
+                options: ["True", "False"],
+                answer: "True",
+                explanation: "The <p> tag is used to define paragraphs in HTML, which is essential for organizing text content."
+            },
+            {
+                question: "What is the purpose of the <alt> attribute in an image tag?",
+                options: ["To specify the image source", "To provide alternative text for screen readers", "To define image dimensions"],
+                answer: "To provide alternative text for screen readers",
+                explanation: "The <alt> attribute describes the content of an image, which is important for accessibility and SEO."
             }
         ]
     },
     {
         title: 'JavaScript Advanced Quiz',
-        description: 'Test your knowledge of advanced JavaScript concepts', // Added description
+        description: 'Test your knowledge of advanced JavaScript concepts with these questions.',
         courseId: '', // This will be set after inserting courses
         questions: [
             {
                 question: "What is a closure in JavaScript?",
                 options: ["A function having access to its own scope", "A function having access to the parent scope", "Both"],
-                answer: "Both"
+                answer: "Both",
+                explanation: "A closure is a feature where a function retains access to its lexical scope, including variables from the parent scope."
             },
             {
                 question: "What is the purpose of async/await in JavaScript?",
                 options: ["To make asynchronous code look synchronous", "To make synchronous code asynchronous", "To block the execution"],
-                answer: "To make asynchronous code look synchronous"
+                answer: "To make asynchronous code look synchronous",
+                explanation: "Async/await simplifies writing asynchronous code by making it appear more like synchronous code, improving readability."
+            },
+            {
+                question: "Which method is used to handle errors in Promises?",
+                options: [".catch()", ".then()", ".finally()"],
+                answer: ".catch()",
+                explanation: ".catch() method is used to handle errors that occur during the execution of a Promise."
+            },
+            {
+                question: "True or False: Closures can be used to create private variables.",
+                options: ["True", "False"],
+                answer: "True",
+                explanation: "Closures can encapsulate private variables and methods, providing a form of data hiding and encapsulation."
             }
         ]
     }

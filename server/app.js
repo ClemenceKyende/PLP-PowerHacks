@@ -9,7 +9,7 @@ const initializeAI = require('./config/aiConfig.js');
 dotenv.config();
 
 // Initialize AI service
-const openai = initializeAI();  // Initialize AI service, ensure this is a function call
+const openai = initializeAI();  // Initialize AI service
 
 // Initialize Express app
 const app = express();
@@ -62,7 +62,6 @@ app.get('/profile.html', (req, res) => {
     res.sendFile(path.join(__dirname, '../views/profile.html'));
 });
 
-// Route to serve chat.html
 app.get('/chat.html', (req, res) => {
     res.sendFile(path.join(__dirname, '../views/chat.html'));
 });
@@ -71,9 +70,9 @@ app.get('/chat.html', (req, res) => {
 const userRoutes = require('./routes/userRoutes');
 const courseRoutes = require('./routes/courseRoutes');
 const quizRoutes = require('./routes/quizRoutes');
-const chatRoutes = require('./routes/chatRoutes'); 
+const chatRoutes = require('./routes/chatRoutes');
 const authRoutes = require('./routes/authRoutes');
-const protect = require('./middleware/authMiddleware').protect; // Ensure correct import
+const { protect } = require('./middleware/authMiddleware'); // Correct import
 
 // Use routes for API endpoints
 app.use('/api/users', userRoutes);      // Routes for user management
@@ -82,8 +81,8 @@ app.use('/api/quizzes', quizRoutes);    // Routes for quizzes
 app.use('/api/chat', chatRoutes);       // Routes for chat functionality
 app.use('/api/auth', authRoutes);       // Routes for authentication
 
-// Protected user routes (this should be used for routes that need authentication)
-app.use('/api/users/profile', protect, userRoutes);  // Ensure only valid routes are protected
+// Protected user routes (make sure you only apply protect to routes that need it)
+app.use('/api/users/profile', protect, userRoutes);  // Ensure this applies to specific routes
 
 // Catch-all for invalid API routes
 app.use((req, res, next) => {

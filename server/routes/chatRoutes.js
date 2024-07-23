@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const chatController = require('../controllers/chatController');
+const { handleChat } = require('../controllers/chatController'); // Ensure handleChat is defined
 
-router.post('/chat', chatController.handleChat);
+router.post('/', handleChat);  // Updated to match '/api/chat'
 
 module.exports = router;

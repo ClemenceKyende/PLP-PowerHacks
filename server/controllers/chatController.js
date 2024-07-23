@@ -6,7 +6,7 @@ const openai = new OpenAI({
 });
 
 // Handle chat requests (questions and feedback)
-exports.handleChat = async (req, res) => {
+const handleChat = async (req, res) => {
     try {
         const { message, type } = req.body;
 
@@ -21,13 +21,13 @@ exports.handleChat = async (req, res) => {
             return res.json({ message: 'Feedback received successfully' });
         } else if (type === 'question') {
             // Handle chat (question)
-            const aiResponse = await openai.completions.create({
+            const aiResponse = await openai.chat.completions.create({
                 model: 'gpt-3.5-turbo', // Update to the correct model if necessary
-                prompt: message,
+                messages: [{ role: 'user', content: message }],
                 max_tokens: 150
             });
 
-            const responseText = aiResponse.choices[0].text.trim();
+            const responseText = aiResponse.choices[0].message.content.trim();
 
             // Save chat history to the database
             await Chat.create({ message, response: responseText, type: 'question' });
@@ -47,3 +47,6 @@ const handleFeedback = async (feedback) => {
     console.log('Feedback received:', feedback);
     // Add logic to save feedback if necessary
 };
+
+// Export the handleChat function
+module.exports = { handleChat };
