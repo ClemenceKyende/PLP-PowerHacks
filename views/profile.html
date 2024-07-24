@@ -11,25 +11,61 @@
         <h1>User Profile</h1>
         <nav>
             <ul>
-                <li><a href="/">Home</a></li> 
+                <li><a href="/">Home</a></li>
                 <li><a href="courses.html">Courses</a></li>
                 <li><a href="quizzes.html">Quizzes</a></li>
                 <li><a href="chat.html">Chat</a></li>
+                <li><button onclick="logoutUser()">Logout</button></li>
             </ul>
         </nav>
     </header>
     <main>
-        <section id="profile-info">
+        <!-- Login prompt link -->
+        <p><a id="loginPromptLinkProfile" href="login.html" class="hidden">Login here to view your profile</a></p>
+
+        <!-- Profile information section -->
+        <section id="profile-info" class="hidden">
             <h2>Profile Information</h2>
-            <p>Username: <span id="username"></span></p>
-            <p>Email: <span id="email"></span></p>
-            <h3>Progress</h3>
-            <div id="progress">
-                <!-- User progress details will be added here -->
+
+            <!-- Profile picture -->
+            <img src="" id="profilePic" alt="Profile Picture" class="profile-pic hidden">
+
+            <!-- Username and email -->
+            <p>Username: <span id="username">Not available</span></p>
+            <p>Email: <span id="email">Not available</span></p>
+
+            <!-- Progress bar -->
+            <div class="progress-container">
+                <div class="progress-circle" data-progress="0">
+                    <div class="progress-text">0%</div>
+                </div>
+                <div class="progress-label">Progress</div>
+            </div>
+
+            <!-- Buttons for editing profile and changing picture -->
+            <button onclick="toggleEditProfile()">Edit Profile</button>
+            <button onclick="toggleChangePicture()">Change Profile Picture</button>
+
+            <!-- Hidden forms for editing profile and changing picture -->
+            <div id="edit-profile-form" class="hidden">
+                <h3>Edit Profile</h3>
+                <form id="editProfileForm">
+                    <label for="newUsername">New Username:</label>
+                    <input type="text" id="newUsername" name="newUsername">
+                    <label for="newEmail">New Email:</label>
+                    <input type="email" id="newEmail" name="newEmail">
+                    <button type="button" onclick="updateProfile()">Save Changes</button>
+                </form>
+            </div>
+            <div id="change-pic-form" class="hidden">
+                <h3>Change Profile Picture</h3>
+                <form id="changePicForm" enctype="multipart/form-data">
+                    <label for="profilePicInput">Select Profile Picture:</label>
+                    <input type="file" id="profilePicInput" name="profilePicInput">
+                    <button type="button" onclick="updateProfilePic()">Upload</button>
+                </form>
             </div>
         </section>
-        <!-- Add the log out button here -->
-        <button id="logoutButton">Log Out</button>
     </main>
     <footer>
         <p>&copy; 2024 SmartQuest. All rights reserved.</p>

@@ -23,8 +23,16 @@
         <section id="quiz-details">
             <h2 id="quiz-title"></h2>
             <p id="quiz-description"></p>
-            <div id="quiz-questions"></div>
-            <button onclick="startQuiz()">Start Quiz</button>
+            <button id="start-quiz-btn" onclick="startQuiz()">Start Quiz</button>
+        </section>
+        <section id="quiz-container" class="hidden">
+            <form id="quiz-form">
+                <div id="quiz-questions"></div>
+                <button type="submit" class="btn">Submit Quiz</button>
+            </form>
+        </section>
+        <section id="results-summary" class="hidden">
+            <!-- Results summary will be injected here -->
         </section>
     </main>
     <footer>

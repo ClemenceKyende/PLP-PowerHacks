@@ -11,22 +11,25 @@
         <h1>Interactive Learning Assistant</h1>
         <nav>
             <ul>
-                <li><a href="/">Home</a></li> 
+                <li><a href="/">Home</a></li>
                 <li><a href="courses.html">Courses</a></li>
                 <li><a href="quizzes.html">Quizzes</a></li>
                 <li><a href="profile.html">Profile</a></li>
                 <li><a href="chat.html">Chat</a></li>
+                <button onclick="logoutUser()">Logout</button>
             </ul>
         </nav>
     </header>
     <main>
-        <div id="chatbox">
+        <!-- Login Prompt -->
+        <p><a id="loginPromptLinkChat" href="login.html" class="hidden">Login here to chat with SmartBot</a></p>
+
+        <!-- Chatbox Container -->
+        <div id="chatbox" class="hidden">
             <div id="messages"></div>
             <input type="text" id="userInput" placeholder="Ask me anything..." />
             <button onclick="sendMessage()">Send</button>
         </div>
-        <!-- Add the error container here -->
-        <div id="error-message" style="display: none; color: red;"></div>
     </main>
     <script src="/script.js"></script>
 </body>

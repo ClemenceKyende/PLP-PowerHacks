@@ -5,9 +5,6 @@ const dotenv = require('dotenv');
 const dbConfig = require('./config/dbConfig.js');
 const initializeAI = require('./config/aiConfig.js'); 
 
-// Load environment variables
-dotenv.config();
-
 // Initialize AI service
 const openai = initializeAI();  // Initialize AI service
 
@@ -26,8 +23,21 @@ mongoose.connect(process.env.MONGODB_URI, {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Example of handling unauthorized access on the server-side
+app.get('/restricted-page', (req, res) => {
+    if (!req.user) {
+        // Send a JSON response with a friendly message
+        res.status(401).json({ error: 'Please log in or register to access this content.' });
+    } else {
+        res.send('Welcome to the restricted page!');
+    }
+});
+
 // Serve static files
 app.use(express.static(path.join(__dirname, '../public')));
+
+// Serve files from 'public/uploads' directory
+app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 
 // Set up routes for views
 app.get('/register.html', (req, res) => {
