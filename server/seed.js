@@ -6,6 +6,7 @@ const Quiz = require('./models/quiz');
 // Replace this with your MongoDB URI
 const mongoURI = process.env.MONGODB_URI;
 
+// Updated sample courses and quizzes
 const sampleCourses = [
     {
         title: "Introduction to Web Development",
@@ -78,6 +79,30 @@ const sampleCourses = [
                 completed: false
             }
         ]
+    },
+    {
+        title: "Basic Python Programming",
+        description: "Introduction to Python programming for beginners.",
+        lessons: [
+            {
+                title: "Python Basics",
+                content: "Understanding Python syntax and basic programming concepts.",
+                resources: ["https://www.learnpython.org/"],
+                completed: false
+            },
+            {
+                title: "Data Structures in Python",
+                content: "Introduction to lists, dictionaries, and other data structures.",
+                resources: ["https://docs.python.org/3/tutorial/datastructures.html"],
+                completed: false
+            },
+            {
+                title: "Object-Oriented Programming",
+                content: "Learning about classes, objects, and OOP principles in Python.",
+                resources: ["https://realpython.com/python3-object-oriented-programming/"],
+                completed: false
+            }
+        ]
     }
 ];
 
@@ -143,6 +168,37 @@ const sampleQuizzes = [
                 explanation: "Closures can encapsulate private variables and methods, providing a form of data hiding and encapsulation."
             }
         ]
+    },
+    {
+        title: 'Python Basics Quiz',
+        description: 'Assess your understanding of basic Python programming concepts.',
+        courseId: '', // This will be set after inserting courses
+        questions: [
+            {
+                question: "What is the correct file extension for Python files?",
+                options: [".py", ".python", ".pyt"],
+                answer: ".py",
+                explanation: "Python files use the .py extension for Python code."
+            },
+            {
+                question: "How do you start a comment in Python?",
+                options: ["//", "#", "/*"],
+                answer: "#",
+                explanation: "In Python, comments are started with the # symbol."
+            },
+            {
+                question: "What is the output of the following code: print(2 ** 3)?",
+                options: ["6", "8", "9"],
+                answer: "8",
+                explanation: "The code calculates 2 raised to the power of 3, which is 8."
+            },
+            {
+                question: "True or False: Lists in Python are immutable.",
+                options: ["True", "False"],
+                answer: "False",
+                explanation: "Lists in Python are mutable, meaning they can be modified after creation."
+            }
+        ]
     }
 ];
 
@@ -163,6 +219,7 @@ const seedDatabase = async () => {
         // Update quizzes with actual course IDs
         sampleQuizzes[0].courseId = insertedCourses[0]._id;
         sampleQuizzes[1].courseId = insertedCourses[1]._id;
+        sampleQuizzes[2].courseId = insertedCourses[2]._id; // Updated to include the third course
 
         // Insert quizzes
         await Quiz.insertMany(sampleQuizzes);
